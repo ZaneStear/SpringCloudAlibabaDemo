@@ -15,6 +15,6 @@ public class MyCon {
     public String Add(){
         String s = restTemplate.getForObject("http://stock-s:8081/use", String.class);
         System.out.println(s);
-        return "add";
+        return "add" + s;
     }
 }
