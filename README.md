@@ -24,7 +24,7 @@
 </dependencyManagement>
 ```
 ## 2. 创建子项目（微服务）
-子项目创建为Maven项目，并向pom里添加基础依赖（spring web,alibaba nacos-discovery,loadbalancer），不需要指定版本，因为父项目已经有了这几个包的版本管理
+子项目创建为Maven项目（IDEA中选择New Module），并向pom里添加基础依赖（spring web,alibaba nacos-discovery,loadbalancer），不需要指定版本，因为父项目已经有了这几个包的版本管理
 ``` xml
 <dependencies>
     <dependency>
@@ -56,6 +56,17 @@ spring:
         username: nacos  # nacos登陆使用
         password: nacos
         namespace: public  # nacos默认namespace
+```
+# Nacos搭建
+## 1. 安装
+参照官网下载执行运行脚本
+## 2. 开启鉴权
+修改nacos/conf/application.properties并重启
+``` properties
+nacos.core.auth.enabled=true
+nacos.core.auth.plugin.nacos.token.secret.key=SecretKey012345678901234567890123456789012345678901234567890123456789
+nacos.core.auth.server.identity.key=nacos
+nacos.core.auth.server.identity.value=nacos
 ```
 # 项目运行
 运行order和stock（可以运行多个不同端口查看负载均衡情况）访问：[http://localhost:8080/add](http://localhost:8080/add)，可以看到order服务通过nacos调用了stock服务
